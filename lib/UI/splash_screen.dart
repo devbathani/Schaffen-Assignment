@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:schaffen_assignment/UI/Authentication_Screen/login_screen.dart';
+import 'package:schaffen_assignment/transition/page_transition_left.dart';
 
 class Splashscreen extends StatefulWidget {
   const Splashscreen({Key? key}) : super(key: key);
@@ -17,11 +18,11 @@ class _SplashscreenState extends State<Splashscreen> {
   }
 
   _navigatetohome() async {
-    await Future.delayed(const Duration(seconds: 5), () {});
+    await Future.delayed(const Duration(seconds: 1), () {});
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(
-        builder: (context) => const Loginscreen(),
+      CustomPageTransitionLeft(
+        child: Loginscreen(),
       ),
     );
   }
@@ -36,8 +37,8 @@ class _SplashscreenState extends State<Splashscreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              height: 100.h,
-              width: 100.w,
+              height: 120.h,
+              width: 120.w,
               decoration: const BoxDecoration(
                   image: DecorationImage(
                 image: AssetImage('assets/company_logo.png'),
