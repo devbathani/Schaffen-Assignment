@@ -22,6 +22,7 @@ class _RegisterscreenState extends State<Registerscreen>
 
   TextEditingController address = TextEditingController();
   late AnimationController animationController;
+  final GlobalKey<FormState> _form = GlobalKey<FormState>();
   @override
   void initState() {
     super.initState();
@@ -106,321 +107,328 @@ class _RegisterscreenState extends State<Registerscreen>
                     SizedBox(
                       height: 10.h,
                     ),
-                    FadeTransition(
-                      opacity: animationController,
-                      child: SlideTransition(
-                        position: Tween<Offset>(
-                          begin: const Offset(0.5, 0),
-                          end: const Offset(0, 0),
-                        ).animate(animationController),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20.w),
-                          child: TextFormField(
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return "Name is required";
-                              }
-                            },
-                            controller: name,
-                            keyboardType: TextInputType.name,
-                            style: GoogleFonts.roboto(
-                              textStyle: TextStyle(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 15.5.w,
-                              ),
-                            ),
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Colors.white,
-                              errorMaxLines: 2,
-                              prefixIcon: const Icon(
-                                Icons.person,
-                                color: Colors.grey,
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.w),
+                    Form(
+                      key: _form,
+                      child: Column(
+                        children: [
+                          FadeTransition(
+                            opacity: animationController,
+                            child: SlideTransition(
+                              position: Tween<Offset>(
+                                begin: const Offset(0.5, 0),
+                                end: const Offset(0, 0),
+                              ).animate(animationController),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                                child: TextFormField(
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return "Name is required";
+                                    }
+                                  },
+                                  controller: name,
+                                  keyboardType: TextInputType.name,
+                                  style: GoogleFonts.roboto(
+                                    textStyle: TextStyle(
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 15.5.w,
+                                    ),
+                                  ),
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    errorMaxLines: 2,
+                                    prefixIcon: const Icon(
+                                      Icons.person,
+                                      color: Colors.grey,
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10.w),
+                                      ),
+                                      borderSide: BorderSide(
+                                        color: Colors.black,
+                                        width: 1.w,
+                                      ),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10.w),
+                                      ),
+                                      borderSide: BorderSide(
+                                        color: Colors.white,
+                                        width: 1.w,
+                                      ),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10.w),
+                                      ),
+                                      borderSide: BorderSide(
+                                        color: Colors.red,
+                                        width: 1.w,
+                                      ),
+                                    ),
+                                    border: InputBorder.none,
+                                    contentPadding: EdgeInsets.all(20.w),
+                                    labelText: 'Name',
+                                    labelStyle: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
                                 ),
-                                borderSide: BorderSide(
-                                  color: Colors.black,
-                                  width: 1.w,
-                                ),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.w),
-                                ),
-                                borderSide: BorderSide(
-                                  color: Colors.white,
-                                  width: 1.w,
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.w),
-                                ),
-                                borderSide: BorderSide(
-                                  color: Colors.red,
-                                  width: 1.w,
-                                ),
-                              ),
-                              border: InputBorder.none,
-                              contentPadding: EdgeInsets.all(20.w),
-                              labelText: 'Name',
-                              labelStyle: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 15.h,
-                    ),
-                    FadeTransition(
-                      opacity: animationController,
-                      child: SlideTransition(
-                        position: Tween<Offset>(
-                          begin: const Offset(0.5, 0),
-                          end: const Offset(0, 0),
-                        ).animate(animationController),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20.w),
-                          child: TextFormField(
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return "Email is required";
-                              }
-                              if (!RegExp(
-                                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                  .hasMatch(value)) {
-                                return 'Please enter a valid Email';
-                              }
-                              return null;
-                            },
-                            controller: email,
-                            keyboardType: TextInputType.name,
-                            style: GoogleFonts.roboto(
-                              textStyle: TextStyle(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 15.5.w,
-                              ),
-                            ),
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Colors.white,
-                              errorMaxLines: 2,
-                              prefixIcon: const Icon(
-                                Icons.email,
-                                color: Colors.grey,
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.w),
-                                ),
-                                borderSide: BorderSide(
-                                  color: Colors.black,
-                                  width: 1.w,
-                                ),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.w),
-                                ),
-                                borderSide: BorderSide(
-                                  color: Colors.white,
-                                  width: 1.w,
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.w),
-                                ),
-                                borderSide: BorderSide(
-                                  color: Colors.red,
-                                  width: 1.w,
-                                ),
-                              ),
-                              border: InputBorder.none,
-                              contentPadding: EdgeInsets.all(20.w),
-                              labelText: 'Email',
-                              labelStyle: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                                color: Colors.grey,
                               ),
                             ),
                           ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 15.h,
-                    ),
-                    FadeTransition(
-                      opacity: animationController,
-                      child: SlideTransition(
-                        position: Tween<Offset>(
-                          begin: const Offset(0.5, 0),
-                          end: const Offset(0, 0),
-                        ).animate(animationController),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20.w),
-                          child: TextFormField(
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return "Please a phone number";
-                              }
-                              if (value == toString()) {
-                                return "Enter a valid number";
-                              }
-                              if (value.length < 10) {
-                                return "Enter a valid number";
-                              }
-                            },
-                            controller: phonenumber,
-                            keyboardType: TextInputType.phone,
-                            style: GoogleFonts.roboto(
-                              textStyle: TextStyle(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 15.5.w,
-                              ),
-                            ),
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Colors.white,
-                              errorMaxLines: 2,
-                              prefixText: '+91',
-                              prefixIcon: const Icon(
-                                Icons.phone_android,
-                                color: Colors.grey,
-                              ),
-                              prefixStyle: GoogleFonts.roboto(
-                                textStyle: TextStyle(
-                                    color: Colors.grey,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 15.5.w),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.w),
+                          SizedBox(
+                            height: 15.h,
+                          ),
+                          FadeTransition(
+                            opacity: animationController,
+                            child: SlideTransition(
+                              position: Tween<Offset>(
+                                begin: const Offset(0.5, 0),
+                                end: const Offset(0, 0),
+                              ).animate(animationController),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                                child: TextFormField(
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return "Email is required";
+                                    }
+                                    if (!RegExp(
+                                            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                        .hasMatch(value)) {
+                                      return 'Please enter a valid Email';
+                                    }
+                                    return null;
+                                  },
+                                  controller: email,
+                                  keyboardType: TextInputType.name,
+                                  style: GoogleFonts.roboto(
+                                    textStyle: TextStyle(
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 15.5.w,
+                                    ),
+                                  ),
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    errorMaxLines: 2,
+                                    prefixIcon: const Icon(
+                                      Icons.email,
+                                      color: Colors.grey,
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10.w),
+                                      ),
+                                      borderSide: BorderSide(
+                                        color: Colors.black,
+                                        width: 1.w,
+                                      ),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10.w),
+                                      ),
+                                      borderSide: BorderSide(
+                                        color: Colors.white,
+                                        width: 1.w,
+                                      ),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10.w),
+                                      ),
+                                      borderSide: BorderSide(
+                                        color: Colors.red,
+                                        width: 1.w,
+                                      ),
+                                    ),
+                                    border: InputBorder.none,
+                                    contentPadding: EdgeInsets.all(20.w),
+                                    labelText: 'Email',
+                                    labelStyle: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
                                 ),
-                                borderSide: BorderSide(
-                                  color: Colors.black,
-                                  width: 1.w,
-                                ),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.w),
-                                ),
-                                borderSide: BorderSide(
-                                  color: Colors.white,
-                                  width: 1.w,
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.w),
-                                ),
-                                borderSide: BorderSide(
-                                  color: Colors.red,
-                                  width: 1.w,
-                                ),
-                              ),
-                              border: InputBorder.none,
-                              contentPadding: EdgeInsets.all(20.w),
-                              labelText: 'Phone Number',
-                              labelStyle: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                                color: Colors.grey,
                               ),
                             ),
                           ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 15.h,
-                    ),
-                    FadeTransition(
-                      opacity: animationController,
-                      child: SlideTransition(
-                        position: Tween<Offset>(
-                          begin: const Offset(0.5, 0),
-                          end: const Offset(0, 0),
-                        ).animate(animationController),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20.w),
-                          child: TextFormField(
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return "Address is required";
-                              }
-                            },
-                            controller: address,
-                            keyboardType: TextInputType.name,
-                            style: GoogleFonts.roboto(
-                              textStyle: TextStyle(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 15.5.w,
-                              ),
-                            ),
-                            maxLines: 2,
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Colors.white,
-                              errorMaxLines: 2,
-                              prefixIcon: const Icon(
-                                Icons.directions,
-                                color: Colors.grey,
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.w),
+                          SizedBox(
+                            height: 15.h,
+                          ),
+                          FadeTransition(
+                            opacity: animationController,
+                            child: SlideTransition(
+                              position: Tween<Offset>(
+                                begin: const Offset(0.5, 0),
+                                end: const Offset(0, 0),
+                              ).animate(animationController),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                                child: TextFormField(
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return "Please a phone number";
+                                    }
+                                    if (value == toString()) {
+                                      return "Enter a valid number";
+                                    }
+                                    if (value.length < 10) {
+                                      return "Enter a valid number";
+                                    }
+                                  },
+                                  controller: phonenumber,
+                                  keyboardType: TextInputType.phone,
+                                  style: GoogleFonts.roboto(
+                                    textStyle: TextStyle(
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 15.5.w,
+                                    ),
+                                  ),
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    errorMaxLines: 2,
+                                    prefixText: '+91',
+                                    prefixIcon: const Icon(
+                                      Icons.phone_android,
+                                      color: Colors.grey,
+                                    ),
+                                    prefixStyle: GoogleFonts.roboto(
+                                      textStyle: TextStyle(
+                                          color: Colors.grey,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 15.5.w),
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10.w),
+                                      ),
+                                      borderSide: BorderSide(
+                                        color: Colors.black,
+                                        width: 1.w,
+                                      ),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10.w),
+                                      ),
+                                      borderSide: BorderSide(
+                                        color: Colors.white,
+                                        width: 1.w,
+                                      ),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10.w),
+                                      ),
+                                      borderSide: BorderSide(
+                                        color: Colors.red,
+                                        width: 1.w,
+                                      ),
+                                    ),
+                                    border: InputBorder.none,
+                                    contentPadding: EdgeInsets.all(20.w),
+                                    labelText: 'Phone Number',
+                                    labelStyle: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
                                 ),
-                                borderSide: BorderSide(
-                                  color: Colors.black,
-                                  width: 1.w,
-                                ),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.w),
-                                ),
-                                borderSide: BorderSide(
-                                  color: Colors.white,
-                                  width: 1.w,
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.w),
-                                ),
-                                borderSide: BorderSide(
-                                  color: Colors.red,
-                                  width: 1.w,
-                                ),
-                              ),
-                              border: InputBorder.none,
-                              contentPadding: EdgeInsets.all(20.w),
-                              labelText: 'Address',
-                              labelStyle: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                                color: Colors.grey,
                               ),
                             ),
                           ),
-                        ),
+                          SizedBox(
+                            height: 15.h,
+                          ),
+                          FadeTransition(
+                            opacity: animationController,
+                            child: SlideTransition(
+                              position: Tween<Offset>(
+                                begin: const Offset(0.5, 0),
+                                end: const Offset(0, 0),
+                              ).animate(animationController),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                                child: TextFormField(
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return "Address is required";
+                                    }
+                                  },
+                                  controller: address,
+                                  keyboardType: TextInputType.name,
+                                  style: GoogleFonts.roboto(
+                                    textStyle: TextStyle(
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 15.5.w,
+                                    ),
+                                  ),
+                                  maxLines: 2,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    errorMaxLines: 2,
+                                    prefixIcon: const Icon(
+                                      Icons.directions,
+                                      color: Colors.grey,
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10.w),
+                                      ),
+                                      borderSide: BorderSide(
+                                        color: Colors.black,
+                                        width: 1.w,
+                                      ),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10.w),
+                                      ),
+                                      borderSide: BorderSide(
+                                        color: Colors.white,
+                                        width: 1.w,
+                                      ),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10.w),
+                                      ),
+                                      borderSide: BorderSide(
+                                        color: Colors.red,
+                                        width: 1.w,
+                                      ),
+                                    ),
+                                    border: InputBorder.none,
+                                    contentPadding: EdgeInsets.all(20.w),
+                                    labelText: 'Address',
+                                    labelStyle: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     SizedBox(

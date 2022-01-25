@@ -16,7 +16,9 @@ class _LoginscreenState extends State<Loginscreen>
     with SingleTickerProviderStateMixin {
   TextEditingController phonenumber = TextEditingController();
   late AnimationController animationController;
+  final GlobalKey<FormState> _form = GlobalKey<FormState>();
 
+ 
   @override
   void initState() {
     super.initState();
@@ -101,86 +103,89 @@ class _LoginscreenState extends State<Loginscreen>
                     SizedBox(
                       height: 20.h,
                     ),
-                    SlideTransition(
-                      position: Tween<Offset>(
-                        begin: const Offset(0.5, 0),
-                        end: const Offset(0, 0),
-                      ).animate(animationController),
-                      child: FadeTransition(
-                        opacity: animationController,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20.w),
-                          child: TextFormField(
-                            maxLength: 10,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return "Please a phone number";
-                              }
-                              if (value == toString()) {
-                                return "Enter a valid number";
-                              }
-                              if (value.length < 10) {
-                                return "Enter a valid number";
-                              }
-                            },
-                            controller: phonenumber,
-                            keyboardType: TextInputType.phone,
-                            style: GoogleFonts.roboto(
-                              textStyle: TextStyle(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 15.5.w,
-                              ),
-                            ),
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Colors.white,
-                              errorMaxLines: 2,
-                              prefixIcon: const Icon(
-                                Icons.phone_android,
-                                color: Colors.grey,
-                              ),
-                              prefixText: '+91',
-                              prefixStyle: GoogleFonts.roboto(
+                    Form(
+                      key: _form,
+                      child: SlideTransition(
+                        position: Tween<Offset>(
+                          begin: const Offset(0.5, 0),
+                          end: const Offset(0, 0),
+                        ).animate(animationController),
+                        child: FadeTransition(
+                          opacity: animationController,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 20.w),
+                            child: TextFormField(
+                              maxLength: 10,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return "Please a phone number";
+                                }
+                                if (value == toString()) {
+                                  return "Enter a valid number";
+                                }
+                                if (value.length < 10) {
+                                  return "Enter a valid number";
+                                }
+                              },
+                              controller: phonenumber,
+                              keyboardType: TextInputType.phone,
+                              style: GoogleFonts.roboto(
                                 textStyle: TextStyle(
-                                    color: Colors.grey,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 15.5.w),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.w),
-                                ),
-                                borderSide: BorderSide(
-                                  color: Colors.black,
-                                  width: 1.w,
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15.5.w,
                                 ),
                               ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.w),
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: Colors.white,
+                                errorMaxLines: 2,
+                                prefixIcon: const Icon(
+                                  Icons.phone_android,
+                                  color: Colors.grey,
                                 ),
-                                borderSide: BorderSide(
-                                  color: Colors.white,
-                                  width: 1.w,
+                                prefixText: '+91',
+                                prefixStyle: GoogleFonts.roboto(
+                                  textStyle: TextStyle(
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 15.5.w),
                                 ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.w),
+                                errorBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10.w),
+                                  ),
+                                  borderSide: BorderSide(
+                                    color: Colors.black,
+                                    width: 1.w,
+                                  ),
                                 ),
-                                borderSide: BorderSide(
-                                  color: Colors.red,
-                                  width: 1.w,
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10.w),
+                                  ),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                    width: 1.w,
+                                  ),
                                 ),
-                              ),
-                              border: InputBorder.none,
-                              contentPadding: EdgeInsets.all(20.w),
-                              labelText: 'Phone Number',
-                              labelStyle: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                                color: Colors.grey,
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10.w),
+                                  ),
+                                  borderSide: BorderSide(
+                                    color: Colors.red,
+                                    width: 1.w,
+                                  ),
+                                ),
+                                border: InputBorder.none,
+                                contentPadding: EdgeInsets.all(20.w),
+                                labelText: 'Phone Number',
+                                labelStyle: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  color: Colors.grey,
+                                ),
                               ),
                             ),
                           ),
