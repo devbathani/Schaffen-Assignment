@@ -6,7 +6,7 @@ import 'package:schaffen_assignment/TRANSITION/page_transition.dart';
 import 'package:schaffen_assignment/UI/Authentication_Screen/register_screen.dart';
 
 class Loginscreen extends StatefulWidget {
-  Loginscreen({Key? key}) : super(key: key);
+  const Loginscreen({Key? key}) : super(key: key);
 
   @override
   State<Loginscreen> createState() => _LoginscreenState();
