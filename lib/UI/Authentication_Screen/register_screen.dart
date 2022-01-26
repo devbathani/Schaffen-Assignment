@@ -437,7 +437,7 @@ class _RegisterscreenState extends State<Registerscreen>
                     InkWell(
                       splashColor: Colors.pink,
                       onTap: () {},
-                      child: Container(
+                      child: Ink(
                         height: 50.h,
                         width: 150.w,
                         decoration: BoxDecoration(

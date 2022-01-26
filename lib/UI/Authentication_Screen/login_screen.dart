@@ -18,7 +18,6 @@ class _LoginscreenState extends State<Loginscreen>
   late AnimationController animationController;
   final GlobalKey<FormState> _form = GlobalKey<FormState>();
 
- 
   @override
   void initState() {
     super.initState();
@@ -198,7 +197,7 @@ class _LoginscreenState extends State<Loginscreen>
                     InkWell(
                       splashColor: Colors.pink,
                       onTap: () {},
-                      child: Container(
+                      child: Ink(
                         height: 50.h,
                         width: 150.w,
                         decoration: BoxDecoration(
