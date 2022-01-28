@@ -9,6 +9,11 @@ import 'package:schaffen_assignment/TRANSITION/page_transition_left.dart';
 import 'package:schaffen_assignment/UI/home_screen.dart';
 import 'package:schaffen_assignment/UI/Authentication_Screen/login_screen.dart';
 
+enum MobileVerificationState {
+  SHOW_MOBILE_FORM_STATE,
+  SHOW_OTP_FORM_STATE,
+}
+
 class Registerscreen extends StatefulWidget {
   const Registerscreen({Key? key}) : super(key: key);
 
@@ -95,6 +100,7 @@ class _RegisterscreenState extends State<Registerscreen>
         print(e.message);
       }
     }
+
     return SingleChildScrollView(
       reverse: true,
       child: Column(

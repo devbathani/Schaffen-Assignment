@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:schaffen_assignment/Database/DatabaseManager.dart';
 import 'package:schaffen_assignment/TRANSITION/page_transition.dart';
 import 'package:schaffen_assignment/UI/home_screen.dart';
 import 'package:schaffen_assignment/UI/Authentication_Screen/register_screen.dart';
