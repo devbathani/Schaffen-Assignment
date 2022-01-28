@@ -55,6 +55,46 @@ class _RegisterscreenState extends State<Registerscreen>
   }
 
   getRegisterationForm(context) {
+    final registerprovider =
+        Provider.of<DatabaseManager>(context, listen: false);
+    void signInWithPhoneAuthCredential(
+        PhoneAuthCredential phoneAuthCredential) async {
+      setState(() {
+        showLoading = true;
+      });
+      try {
+        final authCredential =
+            await _auth.signInWithCredential(phoneAuthCredential);
+
+        setState(() {
+          showLoading = false;
+        });
+        if (authCredential.user != null) {
+          registerprovider.addUserInfo(
+            name.text,
+            email.text,
+            phoneController.text,
+            address.text,
+            authCredential.user!.uid,
+          );
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const HomeScreen(),
+            ),
+          );
+        }
+      } on FirebaseAuthException catch (e) {
+        setState(() {
+          showLoading = false;
+        });
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(e.message!),
+          backgroundColor: Colors.red,
+        ));
+        print(e.message);
+      }
+    }
     return SingleChildScrollView(
       reverse: true,
       child: Column(
@@ -461,7 +501,7 @@ class _RegisterscreenState extends State<Registerscreen>
                             setState(() {
                               showLoading = false;
                             });
-                            //signInWithPhoneAuthCredential(phoneAuthCredential);
+                            signInWithPhoneAuthCredential(phoneAuthCredential);
                           },
                           verificationFailed: (verificationFailed) async {
                             setState(() {

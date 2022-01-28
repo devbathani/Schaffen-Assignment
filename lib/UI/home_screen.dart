@@ -15,10 +15,10 @@ class _HomeScreenState extends State<HomeScreen> {
   final _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  late String name;
-  late String email;
-  late String phonenumber;
-  late String address;
+  String? name;
+  String? email;
+  String? phonenumber;
+  String? address;
 
   getDetails() async {
     await _firestore
@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _auth.currentUser!.uid == null
+      body: name == null
           ? const Center(
               child: CircularProgressIndicator(
                 color: Colors.red,
@@ -120,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       SizedBox(width: 25.w),
                       Text(
-                        name,
+                        name!,
                         style: GoogleFonts.sourceSansPro(
                           textStyle: TextStyle(
                             color: Colors.black,
@@ -156,7 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 10.h,
                       ),
                       Text(
-                        email,
+                        email!,
                         style: GoogleFonts.sourceSansPro(
                           textStyle: TextStyle(
                             color: Colors.grey,
@@ -192,7 +192,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 10.h,
                       ),
                       Text(
-                        phonenumber,
+                        phonenumber!,
                         style: GoogleFonts.sourceSansPro(
                           textStyle: TextStyle(
                             color: Colors.grey,
@@ -228,7 +228,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 10.h,
                       ),
                       Text(
-                        address,
+                        address!,
                         style: GoogleFonts.sourceSansPro(
                           textStyle: TextStyle(
                             color: Colors.grey,
